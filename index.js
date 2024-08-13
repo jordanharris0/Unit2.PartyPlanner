@@ -39,7 +39,7 @@ async function addParty(event) {
   await createParty(
     addNewParty.name.value,
     //consverts date to ISO format to match the API
-    new Date(addNewParty.date.value).toISOString(),
+    new Date(addNewParty.date.value),
     addNewParty.location.value,
     addNewParty.description.value
   );
@@ -91,7 +91,7 @@ function renderParty() {
     partyCard.classList.add("party");
     partyCard.innerHTML = `
         <h2>${party.name}<h2>
-        <h2>${party.date}<h2>
+        <h2>${new Date(party.date).toLocaleDateString()}<h2>
         <h2>${party.location}<h2>
         <h2>${party.description}<h2>
         `;
