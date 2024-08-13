@@ -38,13 +38,14 @@ async function addParty(event) {
 
   await createParty(
     addNewParty.name.value,
+    //consverts date to ISO format to match the API
     new Date(addNewParty.date.value).toISOString(),
     addNewParty.location.value,
     addNewParty.description.value
   );
 }
 
-//Create new party function
+//Create new party function that adds to server
 async function createParty(name, date, location, description) {
   try {
     const response = await fetch(API_URL, {
@@ -53,7 +54,7 @@ async function createParty(name, date, location, description) {
       body: JSON.stringify({ name, date, location, description }),
     });
     const json = await response.json();
-    console.log(json);
+    console.log(json.data);
     render();
   } catch (error) {
     console.error(error);
